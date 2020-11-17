@@ -1,0 +1,32 @@
+{
+    "name": "firstNodeProject2",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "babel": {
+        "presets": [
+            "@babel/preset-env"
+        ]
+    },
+    "scripts": {
+        "dev": "nodemon dist/server.js",
+        "build": "babel ./src --out-dir dist -w",
+        "typeorm": "./node_modules/typeorm/cli.js"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "@babel/cli": "^7.12.1",
+        "@babel/core": "^7.12.3",
+        "@babel/preset-env": "^7.12.1",
+        "date-fns": "^2.16.1",
+        "express": "^4.17.1",
+        "pg": "^8.5.1",
+        "typeorm": "^0.2.29",
+        "uuid": "^8.3.1"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.6"
+    }
+}
