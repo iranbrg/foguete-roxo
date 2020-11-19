@@ -7,14 +7,11 @@ exports["default"] = void 0;
 
 var _express = require("express");
 
-var _appointmentsRoutes = _interopRequireDefault(require("./appointmentsRoutes"));
-
-var _userRoutes = _interopRequireDefault(require("./userRoutes"));
+var _UserController = _interopRequireDefault(require("../controllers/UserController"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 var router = (0, _express.Router)();
-router.use('/appointments', _appointmentsRoutes["default"]);
-router.use('/user', _userRoutes["default"]);
+router.post('/', _UserController["default"].store);
 var _default = router;
 exports["default"] = _default;

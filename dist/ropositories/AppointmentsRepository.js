@@ -1,5 +1,9 @@
 "use strict";
 
+require("core-js/modules/es.array.find");
+
+require("core-js/modules/es.object.define-property");
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });

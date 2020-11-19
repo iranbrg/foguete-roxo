@@ -8,7 +8,6 @@ module.exports = {
   password: "docker",
   database: "sqlnode",
   define: {
-    timestamps: true,
-    underscored: true
+    timestamps: true
   }
 };
