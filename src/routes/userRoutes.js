@@ -3,6 +3,8 @@ import userController from "../controllers/UserController";
 
 const router = Router();
 
-router.post('/', userController.store);
+router.route('/')
+    .get(userController.index)
+    .post(userController.store);
 
 export default router;
