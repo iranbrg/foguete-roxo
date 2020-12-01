@@ -1,21 +1,24 @@
-'use strict';
-
-module.exports = {
+export default {
   up: async (queryInterface, Sequelize) => {
-    /**
-     * Add altering commands here.
-     *
-     * Example:
-     * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
-     */
+     await queryInterface.createTable('appointments', {
+         id: {
+             type: Sequelize.UUID,
+             defaultValue: Sequelize.UUIDV4,
+             primaryKey: true,
+             allowNull: false
+         },
+         provider: {
+             type: Sequelize.STRING,
+             allowNull: false
+         },
+         date: {
+             type: Sequelize.DATE,
+             allowNull: false
+         }
+     });
   },
 
   down: async (queryInterface, Sequelize) => {
-    /**
-     * Add reverting commands here.
-     *
-     * Example:
-     * await queryInterface.dropTable('users');
-     */
+     await queryInterface.dropTable('appointments');
   }
 };
