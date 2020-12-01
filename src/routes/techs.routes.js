@@ -5,6 +5,7 @@ const router = Router();
 
 router.route('/:user_id/techs')
     .get(TechsController.index)
-    .post(TechsController.store);
+    .post(TechsController.store)
+    .delete(TechsController.delete);
 
 export default router;
