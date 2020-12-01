@@ -1,31 +1,23 @@
-import { isEqual } from "date-fns";
 import Appointment from '../models/Appointment';
 
 export default class AppointmentsRepository {
-    constructor() {
-        this._appointments = [];
-    }
-
-    create({ provider, date }) {
-        const appointment = new Appointment(provider, date);
-        this._appointments.push(appointment);
+    static async create({ provider, date }) {
+        const appointment = await Appointment.create({ provider, date });
 
         return appointment;
     }
 
-    findByDate(date) {
-        const findAppointmentInSameDate = this._appointments.find(appointment =>
-            isEqual(appointment.date, date)
-        );
+    static async findByDate(date) {
+        const findAppointmentInSameDate = await Appointment.findOne({
+            where: { date }
+        });
 
-        if (findAppointmentInSameDate) {
-            return true;
-        }
-
-        return null;
+        return findAppointmentInSameDate;
     }
 
-    getAppointments() {
-        return this._appointments;
+    static async getAppointments() {
+        const appointments = await Appointment.findAll();
+
+        return appointments;
     }
 }

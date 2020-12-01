@@ -1,14 +1,8 @@
 import { Router } from "express";
-import appointments from "./appointmentsRoutes";
-import users from "./userRoutes";
-import addresses from "./addresses.routes";
-import techs from "./techs.routes";
+import appointmentsRoutes from "./appointmentsRoutes";
 
 const router = Router();
 
-router.use("/appointments", appointments);
-router.use("/users", users);
-router.use("/users", addresses);
-router.use("/users", techs);
+router.use("/appointments", appointmentsRoutes);
 
 export default router;

@@ -1,13 +1,11 @@
-const { startOfHour } = require("date-fns");
+import { startOfHour } from "date-fns";
+import AppointmentsRepository from "../ropositories/AppointmentsRepository";
 
-class CreateAppointmentService {
-    constructor(appointments) {
-        this._appointments = appointments;
-    }
-
-    execute({ provider, date }) {
+export default class CreateAppointmentService {
+    static async execute({ provider, date }) {
         const appointmentDate = startOfHour(date);
-        const findAppointmentInSameDate = this._appointments.findByDate(
+
+        const findAppointmentInSameDate = await AppointmentsRepository.findByDate(
             appointmentDate
         );
 
@@ -15,10 +13,11 @@ class CreateAppointmentService {
             throw new Error("This appointment is already booked");
         }
 
-        const appointment = this._appointments.create({ provider, date: appointmentDate });
+        const appointment = await AppointmentsRepository.create({
+            provider,
+            date: appointmentDate
+        });
 
         return appointment;
     }
 }
-
-module.exports = CreateAppointmentService;
