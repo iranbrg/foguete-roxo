@@ -1,8 +1,9 @@
 import { startOfHour } from "date-fns";
 import AppointmentsRepository from "../ropositories/AppointmentsRepository";
+import AppError from "../errors/AppError";
 
 export default class CreateAppointmentService {
-    static async execute({ provider, date }) {
+    static async execute({ provider_id, date }) {
         const appointmentDate = startOfHour(date);
 
         const findAppointmentInSameDate = await AppointmentsRepository.findByDate(
@@ -10,11 +11,11 @@ export default class CreateAppointmentService {
         );
 
         if (findAppointmentInSameDate) {
-            throw new Error("This appointment is already booked");
+            throw new AppError("This appointment is already booked");
         }
 
         const appointment = await AppointmentsRepository.create({
-            provider,
+            provider_id,
             date: appointmentDate
         });
 

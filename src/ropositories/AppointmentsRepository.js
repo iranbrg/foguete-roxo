@@ -1,8 +1,8 @@
 import Appointment from '../models/Appointment';
 
 export default class AppointmentsRepository {
-    static async create({ provider, date }) {
-        const appointment = await Appointment.create({ provider, date });
+    static async create({ provider_id, date }) {
+        const appointment = await Appointment.create({ provider_id, date });
 
         return appointment;
     }

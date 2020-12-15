@@ -8,9 +8,16 @@ export default {
         allowNull: false,
         defaultValue: Sequelize.literal("uuid_generate_v4()"),
       },
-      provider: {
-        type: Sequelize.STRING,
-        allowNull: false,
+      providerId: {
+        type: Sequelize.UUID,
+        allowNull: true,
+        references: {
+            model: "users",
+            key: "id"
+        },
+        onDelete: "SET NULL",
+        onUpdate: "CASCADE",
+        field: "provider_id"
       },
       date: {
         type: Sequelize.DATE,
