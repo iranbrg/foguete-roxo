@@ -1,9 +1,18 @@
-import { v4 as uuidv4 } from "uuid";
+import { Model, DataTypes } from "sequelize";
 
-export default class Appointment {
-    constructor(provider, date) {
-        this.id = uuidv4();
-        this.provider = provider;
-        this.date = date;
+export default class Appointment extends Model {
+    static init(db) {
+        super.init({
+            provider_id: { type: DataTypes.STRING },
+            date: { type: DataTypes.DATE }
+        },
+        {
+            sequelize: db,
+            tableName: "appointments"
+        });
+    }
+
+    static associate(models) {
+        this.belongsTo(models.User, { foreignKey: "provider_id", as: "users" });
     }
 }

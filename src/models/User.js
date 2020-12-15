@@ -1,23 +1,20 @@
 import { Model, DataTypes } from "sequelize";
 
-class User extends Model {
+export default class User extends Model {
     static init(db) {
-        super.init(
-            {
-                name: DataTypes.STRING,
-                email: DataTypes.STRING,
-            },
-            {
-                sequelize: db,
-                tableName: "users",
-            }
-        );
+        super.init({
+            name: { type: DataTypes.STRING },
+            email: { type: DataTypes.STRING },
+            password: { type: DataTypes.STRING },
+            avatar: { type: DataTypes.STRING },
+        },
+        {
+            sequelize: db,
+            tableName: "users"
+        });
     }
 
     static associate(models) {
-        this.hasMany(models.Address, { foreignKey: "user_id", as: "addresses"});
-        this.belongsToMany(models.Tech, { through: "user_techs", foreignKey: "user_id", as: "techs" });
+        this.hasMany(models.Appointment, { foreignKey: "provider_id", as: "appointments" });
     }
 }
-
-export default User;
