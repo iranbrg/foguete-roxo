@@ -34,12 +34,7 @@ router.patch("/avatar", ensureAuthenticated, upload.single("avatar"), async (req
         avatarFilename: req.file.filename
     });
 
-    // Can't delete propreties from the `user` object, so that a copy of it
-    // must be created
-    const userWithoutPassword = Object.assign({}, user.dataValues);
-    delete userWithoutPassword.password;
-
-    res.json({ user: userWithoutPassword });
+    res.json(user);
 })
 
 export default router;

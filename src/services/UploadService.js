@@ -25,6 +25,11 @@ export default class UploadService {
             await user.save();
         }
 
+        // Can't delete propreties from the `user` object, so that a copy of it
+        // must be created
+        const userWithoutPassword = Object.assign({}, user.dataValues);
+        delete userWithoutPassword.password;
+
         return user;
     }
 }
