@@ -6,7 +6,8 @@ const router = Router();
 router.post("/", async (req, res) => {
     const { email, password } = req.body;
 
-    const user = await CreateSessionService.execute({
+    const createSessionService = new CreateSessionService();
+    const user = await createSessionService.execute({
     email,
     password,
     });

@@ -1,12 +1,15 @@
 import { startOfHour } from "date-fns";
-import AppointmentsRepository from "../ropositories/AppointmentsRepository";
 import AppError from "../errors/AppError";
 
 export default class CreateAppointmentService {
-    static async execute({ provider_id, date }) {
+    constructor(appointmentsRepository) {
+        this._appointmentsRepository = appointmentsRepository;
+    }
+    
+    async execute({ provider_id, date }) {
         const appointmentDate = startOfHour(date);
 
-        const findAppointmentInSameDate = await AppointmentsRepository.findByDate(
+        const findAppointmentInSameDate = await this._appointmentsRepository.findByDate(
             appointmentDate
         );
 
@@ -14,7 +17,7 @@ export default class CreateAppointmentService {
             throw new AppError("This appointment is already booked");
         }
 
-        const appointment = await AppointmentsRepository.create({
+        const appointment = await this._appointmentsRepository.create({
             provider_id,
             date: appointmentDate
         });

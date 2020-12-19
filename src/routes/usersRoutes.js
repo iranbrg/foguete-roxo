@@ -9,12 +9,16 @@ import ensureAuthenticated from "../middlewares/ensureAuthenticated";
 const router = Router();
 const upload = multer({ storage: uploadConfig.storage });
 
+const usersRepository = new UsersRepository();
+
 router.route("/")
-    .get(async (req, res) => res.json(await UsersRepository.getUsers()))
+    .get(async (req, res) => res.json(await usersRepository.getUsers()))
     .post(async (req, res) => {
         const { name, email, password } = req.body;
 
-        const user = await CreateUserService.execute({
+        const createUserService = new CreateUserService(usersRepository);
+
+        const user = await createUserService.execute({
             name,
             email,
             password
@@ -29,7 +33,8 @@ router.route("/")
     });
 
 router.patch("/avatar", ensureAuthenticated, upload.single("avatar"), async (req, res) => {
-    const user = await UploadService.execute({
+    const UploadService = new UploadService();
+    const user = await uploadService.execute({
         id: req.user.id,
         avatarFilename: req.file.filename
     });

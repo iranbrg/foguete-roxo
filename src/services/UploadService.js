@@ -5,7 +5,7 @@ import uploadConfig from "../config/upload";
 import AppError from "../errors/AppError";
 
 export default class UploadService {
-    static async execute({ id, avatarFilename }) {
+    async execute({ id, avatarFilename }) {
         const user = await User.findOne({ where: { id } });
 
         if (!user) {
@@ -33,4 +33,3 @@ export default class UploadService {
         return user;
     }
 }
-

@@ -5,7 +5,7 @@ import jwtConfig from "../config/auth";
 import AppError from "../errors/AppError";
 
 export default class CreateSessionService {
-    static async execute({ email, password }) {
+    async execute({ email, password }) {
         const user = await User.findOne({ where: { email } });
 
         if (!user) {

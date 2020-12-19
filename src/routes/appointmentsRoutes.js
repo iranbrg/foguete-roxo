@@ -6,12 +6,13 @@ import ensureAuthenticated from "../middlewares/ensureAuthenticated";
 
 const router = Router();
 
+const appointmentsRepository = new AppointmentsRepository();
+
 router.use(ensureAuthenticated);
 
 router.route("/")
     .get(async (req, res) => {
-        console.log(req.user);
-        const appointments = await AppointmentsRepository.getAppointments();
+        const appointments = await appointmentsRepository.getAppointments();
         res.json(appointments);
     })
     .post(async (req, res) => {
@@ -19,7 +20,8 @@ router.route("/")
 
         const parsedDate = parseISO(date);
 
-        const appointment = await CreateAppointmentService.execute({
+        const createAppointmentService = new CreateAppointmentService(appointmentsRepository);
+        const appointment = await createAppointmentService.execute({
             provider_id,
             date: parsedDate,
         });
