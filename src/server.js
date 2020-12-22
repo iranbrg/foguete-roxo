@@ -1,5 +1,6 @@
 import express from "express";
 import "express-async-errors";
+import "./container";
 import indexRouter from "./routes/index";
 import uploadConfig from "./config/upload";
 import "./database";

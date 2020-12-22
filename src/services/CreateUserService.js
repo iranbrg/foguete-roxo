@@ -3,7 +3,7 @@ import User from "../models/User";
 import AppError from "../errors/AppError";
 
 export default class CreateUserService {
-    constructor(usersRepository) {
+    constructor({ usersRepository }) {
         this._userRepository = usersRepository
     }
 

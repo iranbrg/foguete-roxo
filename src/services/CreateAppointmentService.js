@@ -2,7 +2,7 @@ import { startOfHour } from "date-fns";
 import AppError from "../errors/AppError";
 
 export default class CreateAppointmentService {
-    constructor(appointmentsRepository) {
+    constructor({ appointmentsRepository }) {
         this._appointmentsRepository = appointmentsRepository;
     }
     
