@@ -13,4 +13,6 @@ app.use(express.json());
 app.use("/files", express.static(uploadConfig.dir));
 app.use(indexRouter);
 
-app.listen(PORT, () => console.log(`=> Server is running on http://localhost:${PORT}`));
+app.listen(PORT, () =>
+  console.log(`=> Server is running on http://localhost:${PORT}`)
+);

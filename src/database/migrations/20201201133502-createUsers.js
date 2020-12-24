@@ -1,6 +1,6 @@
 export default {
   up: async (queryInterface, Sequelize) => {
-    // await queryInterface.sequelize.query('CREATE EXTENSION IF NOT EXISTS "uuid-ossp";');
+    await queryInterface.sequelize.query('CREATE EXTENSION IF NOT EXISTS "uuid-ossp";');
     await queryInterface.createTable("users", {
       id: {
         type: Sequelize.UUID,
@@ -36,6 +36,7 @@ export default {
   },
 
   down: async (queryInterface, Sequelize) => {
+    await queryInterface.sequelize.query('DROP EXTENSION IF EXISTS "uuid-ossp";');
     await queryInterface.dropTable("users");
   },
 };
