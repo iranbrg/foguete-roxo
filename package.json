@@ -1,43 +1,43 @@
 {
-    "name": "firstNodeProject2",
-    "version": "1.0.0",
-    "description": "",
-    "main": "dist/server.js",
-    "scripts": {
-        "dev": "nodemon --exec babel-node src/server.js",
-        "build": "rimraf ./dist && babel ./src -d dist",
-        "start": "node dist/server.js"
-    },
-    "keywords": [],
-    "author": "",
-    "license": "ISC",
-    "dependencies": {
-        "bcryptjs": "^2.4.3",
-        "date-fns": "^2.16.1",
-        "express": "^4.17.1",
-        "express-async-errors": "^3.1.1",
-        "jsonwebtoken": "^8.5.1",
-        "multer": "^1.4.2",
-        "pg": "^8.5.1",
-        "pg-hstore": "^2.3.3",
-        "sequelize": "^6.3.5"
-    },
-    "devDependencies": {
-        "@babel/cli": "^7.12.1",
-        "@babel/core": "^7.12.3",
-        "@babel/node": "^7.12.6",
-        "@babel/preset-env": "^7.12.1",
-        "@babel/register": "^7.12.1",
-        "awilix": "^4.3.1",
-        "core-js": "^3.7.0",
-        "eslint": "^7.16.0",
-        "eslint-config-airbnb-base": "^14.2.1",
-        "eslint-config-prettier": "^7.1.0",
-        "eslint-plugin-import": "^2.22.1",
-        "eslint-plugin-prettier": "^3.3.0",
-        "nodemon": "^2.0.6",
-        "prettier": "^2.2.1",
-        "rimraf": "^3.0.2",
-        "sequelize-cli": "^6.2.0"
-    }
+  "name": "firstNodeProject2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/server.js",
+  "scripts": {
+    "dev": "nodemon --exec babel-node src/server.js",
+    "build": "rimraf ./dist && babel ./src -d dist",
+    "start": "node dist/server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "date-fns": "^2.16.1",
+    "express": "^4.17.1",
+    "express-async-errors": "^3.1.1",
+    "jsonwebtoken": "^8.5.1",
+    "multer": "^1.4.2",
+    "pg": "^8.5.1",
+    "pg-hstore": "^2.3.3",
+    "sequelize": "^6.3.5"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.12.1",
+    "@babel/core": "^7.12.3",
+    "@babel/node": "^7.12.6",
+    "@babel/preset-env": "^7.12.1",
+    "@babel/register": "^7.12.1",
+    "awilix": "^4.3.1",
+    "core-js": "^3.7.0",
+    "eslint": "^7.16.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-prettier": "^7.1.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-prettier": "^3.3.0",
+    "nodemon": "^2.0.6",
+    "prettier": "^2.2.1",
+    "rimraf": "^3.0.2",
+    "sequelize-cli": "^6.2.0"
+  }
 }

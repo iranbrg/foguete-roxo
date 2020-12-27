@@ -2,7 +2,7 @@ import { Router } from "express";
 import appointmentsRoutes from "./appointmentsRoutes";
 import usersRoutes from "./usersRoutes";
 import sessionsRoutes from "./sessionsRoutes";
-import errorHandler from "../middlewares/errorHandler"
+import errorHandler from "../middlewares/errorHandler";
 
 const router = Router();
 

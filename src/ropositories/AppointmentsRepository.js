@@ -1,23 +1,23 @@
-import Appointment from '../models/Appointment';
+import Appointment from "../models/Appointment";
 
 export default class AppointmentsRepository {
-    async create({ provider_id, date }) {
-        const appointment = await Appointment.create({ provider_id, date });
+  async create({ provider_id, date }) {
+    const appointment = await Appointment.create({ provider_id, date });
 
-        return appointment;
-    }
+    return appointment;
+  }
 
-    async findByDate(date) {
-        const findAppointmentInSameDate = await Appointment.findOne({
-            where: { date }
-        });
+  async findByDate(date) {
+    const findAppointmentInSameDate = await Appointment.findOne({
+      where: { date }
+    });
 
-        return findAppointmentInSameDate;
-    }
+    return findAppointmentInSameDate;
+  }
 
-    async getAppointments() {
-        const appointments = await Appointment.findAll();
+  async getAppointments() {
+    const appointments = await Appointment.findAll();
 
-        return appointments;
-    }
+    return appointments;
+  }
 }

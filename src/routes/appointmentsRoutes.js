@@ -8,8 +8,9 @@ const appointmentsController = new AppointmentsController();
 
 router.use(ensureAuthenticated);
 
-router.route("/")
-    .get(appointmentsController.index)
-    .post(appointmentsController.create);
+router
+  .route("/")
+  .get(appointmentsController.index)
+  .post(appointmentsController.create);
 
 export default router;

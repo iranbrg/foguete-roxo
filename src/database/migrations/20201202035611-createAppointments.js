@@ -6,14 +6,14 @@ export default {
         type: Sequelize.UUID,
         primaryKey: true,
         allowNull: false,
-        defaultValue: Sequelize.literal("uuid_generate_v4()"),
+        defaultValue: Sequelize.literal("uuid_generate_v4()")
       },
       providerId: {
         type: Sequelize.UUID,
         allowNull: true,
         references: {
-            model: "users",
-            key: "id"
+          model: "users",
+          key: "id"
         },
         onDelete: "SET NULL",
         onUpdate: "CASCADE",
@@ -21,22 +21,22 @@ export default {
       },
       date: {
         type: Sequelize.DATE,
-        allowNull: false,
+        allowNull: false
       },
       createdAt: {
         type: Sequelize.DATE,
         allowNull: false,
-        field: "created_at",
+        field: "created_at"
       },
       updatedAt: {
         type: Sequelize.DATE,
         allowNull: false,
-        field: "updated_at",
-      },
+        field: "updated_at"
+      }
     });
   },
 
   down: async (queryInterface, Sequelize) => {
     await queryInterface.dropTable("appointments");
-  },
+  }
 };
