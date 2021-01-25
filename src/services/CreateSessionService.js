@@ -1,18 +1,24 @@
-import { compare } from "bcryptjs";
 import { sign } from "jsonwebtoken";
-import User from "../models/User";
 import jwtConfig from "../config/auth";
 import AppError from "../errors/AppError";
 
 export default class CreateSessionService {
+  constructor({ usersRepository, hashProvider }) {
+    this.usersRepository = usersRepository;
+    this.hashProvider = hashProvider;
+  }
+
   async execute({ email, password }) {
-    const user = await User.findOne({ where: { email } });
+    const user = await this.usersRepository.findByEmail(email);
 
     if (!user) {
       throw new AppError("Incorrect email/password combination", 401);
     }
 
-    const matchedPassword = await compare(password, user.password);
+    const matchedPassword = await this.hashProvider.compareHash(
+      password,
+      user.password
+    );
 
     if (!matchedPassword) {
       throw new AppError("Incorrect email/password combination", 401);
@@ -32,13 +38,6 @@ export default class CreateSessionService {
       { expiresIn }
     );
 
-    // Can't delete propreties from the `user` object, so that a copy of it
-    // must be created
-    const userWithoutPassword = Object.assign({}, user.dataValues);
-    delete userWithoutPassword.password;
-
-    userWithoutPassword.token = token;
-
-    return userWithoutPassword;
+    return { user, token };
   }
 }

@@ -10,7 +10,7 @@ const app = express();
 const PORT = 5050;
 
 app.use(express.json());
-app.use("/files", express.static(uploadConfig.dir));
+app.use("/files", express.static(uploadConfig.uploadDir));
 app.use(indexRouter);
 
 app.listen(PORT, () =>

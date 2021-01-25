@@ -1,14 +1,21 @@
-import UploadService from "../services/UploadService";
+import container from "../container";
 
 export default class UsersAvatarController {
   async update(req, res) {
-    const uploadService = new UploadService();
+    const { id } = req.user.id;
 
-    const user = await uploadService.execute({
-      id: req.user.id,
+    const uploadAvatarService = container.resolve("uploadAvatarService");
+
+    const user = await uploadAvatarService.execute({
+      id,
       avatarFilename: req.file.filename
     });
 
-    res.json(user);
+    // Can't delete propreties from the `user` object, so that a copy of it
+    // must be created
+    const userWithoutPassword = { ...user.dataValues };
+    delete userWithoutPassword.password;
+
+    res.json(userWithoutPassword);
   }
 }

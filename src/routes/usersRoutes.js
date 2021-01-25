@@ -11,7 +11,7 @@ const upload = multer({ storage: uploadConfig.storage });
 const usersController = new UsersController();
 const usersAvatarController = new UsersAvatarController();
 
-router.route("/").get(usersController.index).post(usersController.create);
+router.route("/").post(usersController.create);
 
 router.patch(
   "/avatar",

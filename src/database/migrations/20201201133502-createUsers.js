@@ -1,6 +1,8 @@
+/* eslint-disable quotes */
 export default {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.sequelize.query(
+      // eslint-disable-next-line quotes
       'CREATE EXTENSION IF NOT EXISTS "uuid-ossp";'
     );
     await queryInterface.createTable("users", {
