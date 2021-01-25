@@ -1,25 +1,23 @@
 import { parseISO } from "date-fns";
 import container from "../container";
 
-const appointmentsRepository = container.resolve("appointmentsRepository");
-const createAppointmentService = container.resolve("createAppointmentService");
-
 export default class AppointmentsController {
   async create(req, res) {
-    const { provider_id, date } = req.body;
+    const { provider_id: providerId, date } = req.body;
+    const { id } = req.user;
 
     const parsedDate = parseISO(date);
 
+    const createAppointmentService = container.resolve(
+      "createAppointmentService"
+    );
+
     const appointment = await createAppointmentService.execute({
-      provider_id,
-      date: parsedDate
+      providerId,
+      date: parsedDate,
+      userId: id
     });
 
     res.json(appointment);
-  }
-
-  async index(req, res) {
-    const appointments = await appointmentsRepository.getAppointments();
-    res.json(appointments);
   }
 }

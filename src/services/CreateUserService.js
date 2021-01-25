@@ -1,22 +1,21 @@
-import { hash } from "bcryptjs";
-import User from "../models/User";
 import AppError from "../errors/AppError";
 
 export default class CreateUserService {
-  constructor({ usersRepository }) {
-    this._userRepository = usersRepository;
+  constructor({ usersRepository, hashProvider }) {
+    this.userRepository = usersRepository;
+    this.hashProvider = hashProvider;
   }
 
   async execute({ name, email, password }) {
-    const checkUserExists = await User.findOne({ where: { email } });
+    const checkUserExists = await this.userRepository.findByEmail(email);
 
     if (checkUserExists) {
       throw new AppError("Email address already in use");
     }
 
-    const hashedPassword = await hash(password, 8);
+    const hashedPassword = await this.hashProvider.generateHash(password);
 
-    const user = await this._userRepository.create({
+    const user = await this.userRepository.create({
       name,
       email,
       password: hashedPassword

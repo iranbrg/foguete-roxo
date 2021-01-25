@@ -21,5 +21,14 @@ export default class User extends Model {
       foreignKey: "provider_id",
       as: "appointments"
     });
+
+    this.hasMany(models.Appointment, {
+      foreignKey: "user_id"
+    });
+
+    this.hasMany(models.UserToken, {
+      foreignKey: "user_id",
+      as: "user_tokens"
+    });
   }
 }

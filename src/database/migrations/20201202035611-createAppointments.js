@@ -1,6 +1,5 @@
 export default {
   up: async (queryInterface, Sequelize) => {
-    // await queryInterface.sequelize.query('CREATE EXTENSION IF NOT EXISTS "uuid-ossp";');
     await queryInterface.createTable("appointments", {
       id: {
         type: Sequelize.UUID,

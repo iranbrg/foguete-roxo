@@ -4,8 +4,9 @@ export default class Appointment extends Model {
   static init(db) {
     super.init(
       {
-        provider_id: { type: DataTypes.STRING },
-        date: { type: DataTypes.DATE }
+        providerId: { type: DataTypes.STRING, field: "provider_id" },
+        date: { type: DataTypes.DATE },
+        userId: { type: DataTypes.UUID, field: "user_id" }
       },
       {
         sequelize: db,
@@ -16,5 +17,6 @@ export default class Appointment extends Model {
 
   static associate(models) {
     this.belongsTo(models.User, { foreignKey: "provider_id", as: "users" });
+    this.belongsTo(models.User, { foreignKey: "user_id" });
   }
 }
